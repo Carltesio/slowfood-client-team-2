@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import LoginForm from "./Components/LoginForm";
 import { authenticate } from './modules/auth';
+import {Menu} from "./Components/Menu";
+
 
 class App extends Component {
   state = {
