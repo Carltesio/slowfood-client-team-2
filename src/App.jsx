@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import LoginForm from "./Components/LoginForm";
 import { authenticate, register } from "./modules/auth";
 import RegistrationForm from "./Components/RegistrationForm";
+import MenuData from "./Components/MenuData";
+
 class App extends Component {
   state = {
     renderRegistrationForm: false,
     renderLoginForm: false,
     authenticated: false,
     registered: false,
-    message: ""
+    message: "",
+    MenuData: true
   };
   onLogin = async e => {
     e.preventDefault();
@@ -43,6 +46,7 @@ class App extends Component {
       });
     }
   };
+  
   render() {
     const {
       renderLoginForm,
@@ -82,8 +86,8 @@ class App extends Component {
             </button>
             <p id="message">{message}</p>
           </>
-          
-        );
+         
+        ); debugger
         break;
 
 
@@ -96,6 +100,10 @@ class App extends Component {
       <>
         {renderLogin}
         {renderRegistration}
+       <div>
+       <MenuData/>
+       </div>
+        
       </>
     );
   }

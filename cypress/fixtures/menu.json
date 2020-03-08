@@ -1,8 +1,8 @@
 {
-    "data": {
+  "products": [
+    {
       "id": 1,
-      "name": "cheeseburger",
-      "price": "75",
-      "allow_price_change": false
-    }
-  }
+      "name":"Cheeseburger",
+      "price": 100 }
+    ]
+}

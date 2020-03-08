@@ -3,7 +3,7 @@ describe("user can see a menu", () => {
         cy.visit("http://localhost:3001");  
     })
     it("display product order", () => {
-        cy.get("#menu").should("contain", "Menu")
+        cy.get("#MenuData").should("contain", "Menu")
         
     })
 })
