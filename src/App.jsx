@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import LoginForm from "./Components/LoginForm";
 import { authenticate, register } from "./modules/auth";
 import RegistrationForm from "./Components/RegistrationForm";
-
 class App extends Component {
   state = {
     renderRegistrationForm: false,
@@ -11,7 +10,6 @@ class App extends Component {
     registered: false,
     message: ""
   };
-
   onLogin = async e => {
     e.preventDefault();
     const response = await authenticate(
@@ -28,7 +26,6 @@ class App extends Component {
       });
     }
   };
-
   onRegistration = async e => {
     e.preventDefault();
     const response = await register(
@@ -46,7 +43,6 @@ class App extends Component {
       });
     }
   };
-
   render() {
     const {
       renderLoginForm,
@@ -57,24 +53,18 @@ class App extends Component {
     } = this.state;
     let renderLogin;
     let renderRegistration;
-
     switch (true) {
       case renderLoginForm && !authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
-
         case registered:
           renderRegistration = <p id="message">Account Created</p>;
         break;
-  
       case renderRegistrationForm && !registered:
         renderRegistration = (
           <RegistrationForm submitFormHandler={this.onRegistration} />
   
         );
-
-  
-
       case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
@@ -84,7 +74,6 @@ class App extends Component {
             >
               Login
             </button>
-
             <button
               id="register"
               onClick={() => this.setState({ renderRegistrationForm: true })}
@@ -102,10 +91,7 @@ class App extends Component {
       case authenticated:
         renderLogin = <p id="message">Welcome back</p>;
       break;
-     
-    
     }
-
     return (
       <>
         {renderLogin}
@@ -114,5 +100,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

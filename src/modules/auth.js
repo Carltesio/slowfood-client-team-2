@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const authenticate = async (email, password) => {
   try {
     const response = await axios.post("/auth/sign_in", {
@@ -15,7 +14,6 @@ const authenticate = async (email, password) => {
     };
   }
 };
-
 const register = async (name, email, password) => {
   try {
     const response = await axios.post("/auth/sign_up", {
@@ -32,7 +30,6 @@ const register = async (name, email, password) => {
     };
   }
 };
-
 const storeAuthCredentials = ({ headers }) => {
   const credentials = {
     uid: headers["uid"],
@@ -43,5 +40,4 @@ const storeAuthCredentials = ({ headers }) => {
   };
   sessionStorage.setItem("credentials", JSON.stringify(credentials));
 };
-
 export { authenticate, register };
