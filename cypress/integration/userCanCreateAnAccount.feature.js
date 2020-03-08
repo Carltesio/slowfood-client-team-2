@@ -44,7 +44,7 @@ describe("User can create account", () => {
             cy.get("#confirm-password").type("wrongpassword");
             cy.get('button').contains('Create').click()
         });
-        cy.get("#message").should("contain", "Invalid login credentials. Please try again.");
+        cy.get("#message").should("contain", "Invalid credentials. Please try again.");
     });
 
 

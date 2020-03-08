@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const authenticate = async (email, password) => {
   try {
     const response = await axios.post("/auth/sign_in", {
@@ -9,10 +8,12 @@ const authenticate = async (email, password) => {
     await storeAuthCredentials(response);
     return { authenticated: true };
   } catch (error) {
-    return { authenticated: false, message: "Invalid login credentials. Please try again."};
+    return {
+      authenticated: false,
+      message: "Invalid login credentials. Please try again."
+    };
   }
 };
-
 const register = async (name, email, password) => {
   try {
     const response = await axios.post("/auth/sign_up", {
@@ -21,13 +22,14 @@ const register = async (name, email, password) => {
       password: password
     });
     await storeAuthCredentials(response);
-    return { authenticated: true };
+    return { registered: true };
   } catch (error) {
-    return { authenticated: false, message: "Invalid credentials. Please try again."};
+    return {
+      registered: false,
+      message: "Invalid credentials. Please try again."
+    };
   }
 };
-
-
 const storeAuthCredentials = ({ headers }) => {
   const credentials = {
     uid: headers["uid"],
@@ -38,5 +40,4 @@ const storeAuthCredentials = ({ headers }) => {
   };
   sessionStorage.setItem("credentials", JSON.stringify(credentials));
 };
-
 export { authenticate, register };
