@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoginForm from "./Components/LoginForm";
 import { authenticate, register } from "./modules/auth";
 import RegistrationForm from "./Components/RegistrationForm";
+import DisplayMenuData from "./Components/Menu";
 
 class App extends Component {
   state = {
@@ -34,7 +35,7 @@ class App extends Component {
     const response = await register(
       e.target.name.value,
       e.target.email.value,
-      e.target.password.value
+      e.target.password.value,
     );
     if (response.authenticated) {
       this.setState({ authenticated: true });
@@ -52,7 +53,6 @@ class App extends Component {
       renderLoginForm,
       renderRegistrationForm,
       authenticated,
-      account_created,
       message
     } = this.state;
     let renderLogin;
@@ -62,7 +62,7 @@ class App extends Component {
       case renderLoginForm && !authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
-      case renderRegistrationForm && !registered:
+      case renderRegistrationForm && !authenticated:
         renderRegistration = (
           <RegistrationForm submitFormHandler={this.onRegistration} />
         );
@@ -90,17 +90,16 @@ class App extends Component {
         break;
       case authenticated:
         renderLogin = <p id="message">Welcome back</p>;
-      break;
-        case registered:
-        renderRegistration = <p id="message">Account Created</p>;
 
         break;
     }
 
     return (
       <>
+
         {renderLogin}
         {renderRegistration}
+        {DisplayMenuData}
       </>
     );
   }
